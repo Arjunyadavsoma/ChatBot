@@ -9,7 +9,10 @@ API_KEY = "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
 
 # Available models
 AVAILABLE_MODELS = {
-    "Llama 3.1 70B": "nvidia/llama-3.1-nemotron-70b-instruct",
+    "Llama 3.1 70B": "nvidia/llama-3.1-nemotron-70b-instruct","Llama 3.1 Nano 8B": "nvidia/llama-3.1-nemotron-nano-8b-v1",
+    "Llama 3.3 Super 49B": "nvidia/llama-3.3-nemotron-super-49b-v1",
+    "DeepSeek AI DeepSeek R1": "deepseek-ai/deepseek-r1",
+    "Google Gemma 3 27B IT": "google/gemma-3-27b-it",
     "Mixtral 8x7B": "mistralai/mixtral-8x7b-instruct-v0.1"
 }
 
