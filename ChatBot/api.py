@@ -20,11 +20,16 @@ def validate_api_key():
     return True
 
 
+import streamlit as st
+
 def query_nvidia_llm_stream(messages, model_name, api_settings):
     """
     Stream chat completions from NVIDIA LLM synchronously.
     Yields chunks of content, or logs and stops on error.
     """
+    pdf_text = st.session_state.get('pdf_text', None)
+    if pdf_text:
+        messages.insert(0, {"role": "system", "content": f"Here is the content of the PDF: {pdf_text}"})
     try:
         headers = {
             "Accept": "application/json",
