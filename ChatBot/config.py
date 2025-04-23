@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # API Key
-API_KEY = os.getenv("NVIDIA_API_KEY")
+API_KEY = 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
 
 # Available models
 AVAILABLE_MODELS = {
