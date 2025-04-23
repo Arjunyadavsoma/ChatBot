@@ -10,7 +10,6 @@ API_KEY = "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
 # Available models
 AVAILABLE_MODELS = {
     "Llama 3.1 70B": "nvidia/llama-3.1-nemotron-70b-instruct",
-    "Llama 3.1 8B": "nvidia/llama-3.1-nemotron-8b-instruct",
     "Mixtral 8x7B": "mistralai/mixtral-8x7b-instruct-v0.1"
 }
 
