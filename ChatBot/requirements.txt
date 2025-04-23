@@ -4,3 +4,4 @@ pyttsx3
 speechrecognition
 python-dotenv
 pandas
+httpx==0.24.0  # or the latest version
