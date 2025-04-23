@@ -3,9 +3,34 @@ from config import AVAILABLE_MODELS
 from api import query_nvidia_llm_stream
 import json
 
+import PyPDF2
+
+def extract_text_from_pdf(pdf_file):
+    text = ""
+    try:
+        pdf_reader = PyPDF2.PdfReader(pdf_file)
+        for page in pdf_reader.pages:
+            text += page.extract_text()
+    except Exception as e:
+        st.error(f"Error extracting text from PDF: {e}")
+        return None
+    return text
+
 def render_sidebar():
     """Render sidebar with settings, tools, and chat history"""
     st.sidebar.title("Settings & Tools")
+    uploaded_file = st.sidebar.file_uploader("Upload PDF", type="pdf")
+
+    if uploaded_file is not None:
+        text = extract_text_from_pdf(uploaded_file)
+        if text:
+            st.session_state['pdf_text'] = text
+            st.success("PDF uploaded and text extracted!")
+        else:
+            st.session_state['pdf_text'] = None
+    else:
+        st.session_state['pdf_text'] = None
+
     selected_model = st.sidebar.selectbox("Select Model", options=list(AVAILABLE_MODELS.keys()), key="model")
     st.session_state['selected_model'] = AVAILABLE_MODELS[selected_model]
     st.session_state['max_tokens'] = st.sidebar.slider("Max Tokens", min_value=100, max_value=2000, value=1000, step=100)
@@ -14,9 +39,14 @@ def render_sidebar():
 
 def render_chat_ui():
     """Render chat UI"""
-    st.title("AI Interview Assistant")
+    st.title("NVIDIA AI Interview Assistant")
     st.write("By Arjun Yadav")
-    
+
+    if 'pdf_text' in st.session_state and st.session_state['pdf_text']:
+        st.write("You can now ask questions about the uploaded PDF.")
+    else:
+        st.write("Upload a PDF to start asking questions.")
+
     conversation_history = st.session_state.get('history', [])
 
     # Add system prompt at the beginning of the conversation
