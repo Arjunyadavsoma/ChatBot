@@ -14,7 +14,9 @@ def render_sidebar():
 
 def render_chat_ui():
     """Render chat UI"""
-    st.title("NVIDIA AI Interview Assistant")
+    st.title("AI Interview Assistant")
+    st.write("By Arjun Yadav")
+    
     conversation_history = st.session_state.get('history', [])
 
     # Add system prompt at the beginning of the conversation
