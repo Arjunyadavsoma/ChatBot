@@ -39,7 +39,7 @@ def render_sidebar():
 
 def render_chat_ui():
     """Render chat UI"""
-    st.title("NVIDIA AI Interview Assistant")
+    st.title("AI Interview Assistant")
     st.write("By Arjun Yadav")
 
     if 'pdf_text' in st.session_state and st.session_state['pdf_text']:
